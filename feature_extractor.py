@@ -1,4 +1,4 @@
-import pandas
+import pandas as pd
 
 class FeatureExtractor(object):
     def __init__(self):
