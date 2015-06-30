@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 
 class FeatureExtractor(object):
     def __init__(self):
@@ -8,8 +9,9 @@ class FeatureExtractor(object):
         pass
 
     def transform(self, X_df):
-        X_encoded = X_df        
-        data_weather = pd.read_csv("data_weather.csv")
+        X_encoded = X_df
+        path = os.path.dirname(__file__)
+        data_weather = pd.read_csv(os.path.join(path, "data_weather.csv"))
         X_weather = data_weather[['Date', 'AirPort', 'Max TemperatureC']]
         X_weather = X_weather.rename(columns={'Date': 'DateOfDeparture', 'AirPort': 'Arrival'})
         X_encoded = X_encoded.set_index(['DateOfDeparture', 'Arrival'])
